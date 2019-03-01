@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:munit="http://www.mulesoft.org/schema/mule/munit" xmlns:munit-tools="http://www.mulesoft.org/schema/mule/munit-tools"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xsi:schemaLocation="
+		http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+		http://www.mulesoft.org/schema/mule/munit http://www.mulesoft.org/schema/mule/munit/current/mule-munit.xsd
+		http://www.mulesoft.org/schema/mule/munit-tools  http://www.mulesoft.org/schema/mule/munit-tools/current/mule-munit-tools.xsd">
+	<munit:config name="new-test-suite.xml" />
+	<munit:test name="new-test-suite-get:\:api-configTest" description="Test" doc:id="7faed9ee-27dc-445f-9db1-6a6e9766ff55" >
+		<munit:execution >
+			<munit:set-event doc:name="Set Event" doc:id="4f92363a-9b0d-489f-b119-e15f7114455e" >
+				<munit:payload encoding="UTF-8" />
+				<munit:attributes value="#[{queryParams: {'name':'Anuja'}}]" />
+			</munit:set-event>
+			<logger level="INFO" doc:name="Logger" doc:id="69bb36c7-6bdc-4d45-b651-dce9ac772a19" message="---in munit test----"/>
+			<flow-ref doc:name="Flow-ref to get:\:api-config" doc:id="f31842cc-4729-44d2-b857-9e729198ab5a" name="get:\:api-config"/>
+		</munit:execution>
+		<munit:validation >
+			<munit-tools:assert-that doc:name="Assert that" doc:id="deccc108-f09f-4f2e-ab0a-b90022e2ac41" expression="#[payload]" message="payload is null" is="#[MunitTools::notNullValue()]"/>
+		</munit:validation>
+	</munit:test>
+
+
+</mule>
